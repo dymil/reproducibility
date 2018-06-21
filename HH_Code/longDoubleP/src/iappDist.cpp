@@ -25,7 +25,7 @@ void initRandDistIappValues( std::vector<double> &iapp, double deli, double i0) 
 		iapp[n] = i0+((double)rand()/RAND_MAX)*deli;
 }
 
-void initRandIappValues(std::vector<double> &iapp) {
+void initRandIappValues(std::vector<long double> &iapp) {
 
 	int numele = iapp.size();
 	switch (numele) {
@@ -46,7 +46,7 @@ void initRandIappValues(std::vector<double> &iapp) {
 }
 
 // Function to write a .txt
-int writeIappToFile (std::vector<double> &iapp, std::string const fileNameStr){
+int writeIappToFile (std::vector<long double> &iapp, std::string const fileNameStr){
 
 	ofstream myfile(fileNameStr);
 	unsigned int nNeurons = iapp.size();
@@ -68,7 +68,7 @@ int writeIappToFile (std::vector<double> &iapp, std::string const fileNameStr){
 
 
 // Iapp values for 100 neurons
-void initRandIappValues_100(std::vector<double> &iapp) {
+void initRandIappValues_100(std::vector<long double> &iapp) {
 	// Specific case of Random distribution values in the interval [i0, i0+deli]
 	// Fix values for every simulation
 	if (iapp.size()!=100)
@@ -506,7 +506,7 @@ void initRandIappValues_100(std::vector<double> &iapp) {
 }
 
 
-void initRandIappValues_200(std::vector<double> &iapp) {
+void initRandIappValues_200(std::vector<long double> &iapp) {
 
 	if (iapp.size()!=200)
 		return;
@@ -714,7 +714,7 @@ void initRandIappValues_200(std::vector<double> &iapp) {
 
 }
 
-void initRandIappValues_400(std::vector<double> &iapp) {
+void initRandIappValues_400(std::vector<long double> &iapp) {
 
 	if (iapp.size()!=400)
 		return;
