@@ -250,7 +250,8 @@ void show_usage(string name)
 			<< "\t-case\t<Simulation case, integer [11 12 13 14 21 22 23 24]>\n"
 			<< "\t-vInh\t<Reversal Potential value, double [70 ..-12]>\n"
 			<< "\t-nBurst\t<How many burst, integer > 0>\n"
-			<< "\t-pExcN\t<Persentage of excitatory neurons, double ]0..1]>\n"
+			<< "\t-pExcN\t<Percentage of excitatory neurons, double ]0..1]>\n"
+			<< "\t-o\t<output result directory or prefix>\n"
 			<< endl;
 }
 
