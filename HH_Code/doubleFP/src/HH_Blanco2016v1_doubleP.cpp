@@ -341,7 +341,7 @@ int writeFPErrorsToFile (vector< boost::array<double, 3> > &v, string const file
   ofstream myfile(fileNameStr);
 	cout << "Writing in file: "<< fileNameStr << endl;
 
-	// myfile.precision(4);								// Adjust precision
+	myfile.precision(17);								// Adjust precision
 	if (myfile.is_open())
 	{
 		if (v.size() > 0) {
@@ -431,6 +431,8 @@ int main(int argc, char* argv[]) {
 		errsFP.push_back(boost::array<double, 3>());
 		errsFP[errsFP.size()-1][0] = cpp_dec_float_100(bigAtotExc - atotExc).convert_to<double>();
 		errsFP[errsFP.size()-1][1] = cpp_dec_float_100(bigAtotInh - atotInh).convert_to<double>();
+		// errsFP[errsFP.size()-1][0] = bigAtotExc.convert_to<double>() - atotExc;
+		// errsFP[errsFP.size()-1][1] = bigAtotInh.convert_to<double>() - atotInh;
 		errsFP[errsFP.size()-1][2] = bigAtotExc.convert_to<double>();
 
 		// Saving the previous state of the network to detecting episodes
@@ -627,6 +629,7 @@ int main(int argc, char* argv[]) {
 	ave.clear();
 	sv1.clear();
 	sv2.clear();
+	errsFP.clear();
 	delete mSpikeTrain;
 
 	return 0;
