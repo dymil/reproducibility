@@ -341,7 +341,7 @@ int writeFPErrorsToFile (vector< boost::array<double, 3> > &v, string const file
   ofstream myfile(fileNameStr);
 	cout << "Writing in file: "<< fileNameStr << endl;
 
-	// myfile.precision(4);								// Adjust precision
+	myfile.precision(17);								// Adjust precision
 	if (myfile.is_open())
 	{
 		if (v.size() > 0) {
