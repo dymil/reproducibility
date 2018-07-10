@@ -26,7 +26,7 @@
 
 #include <boost/array.hpp>
 #include <boost/numeric/odeint.hpp>
-#include <boost/multiprecision/cpp_dec_float.hpp>
+// #include <boost/multiprecision/cpp_dec_float.hpp>
 
 #include <random>
 #include <algorithm>
@@ -36,7 +36,7 @@
 
 using namespace std;
 using namespace boost::numeric::odeint;
-using boost::multiprecision::cpp_dec_float_100;
+// using boost::multiprecision::cpp_dec_float_100;
 
 static bool debug = false;
 
@@ -108,8 +108,9 @@ double atotExc, atotExcj;
 double atotInh, atotInhj;
 
 //# Recomputed in different order
-cpp_dec_float_100 reAtotExc, reAtotInh;
-cpp_dec_float_100 bigAtotExc, bigAtotInh;
+using bigType = double;
+bigType reAtotExc, reAtotInh;
+bigType bigAtotExc, bigAtotInh;
 
 //# v[i] membrane potential of cell i
 //# n[i] activation of K+ conductance for cell i
@@ -479,27 +480,27 @@ int main(int argc, char* argv[]) {
 
 		bigAtotExc = atotInh = 0;
 		for ( n = 0; n < nExcNeurons; n++) {
-		  bigAtotExc += static_cast<cpp_dec_float_100>(network[n][3])*network[n][2];
+		  bigAtotExc += static_cast<bigType>(network[n][3])*network[n][2];
 		}
 		for ( n = nExcNeurons; n < nNeurons; n++) {
-		  bigAtotInh += static_cast<cpp_dec_float_100>(network[n][3])*network[n][2];
+		  bigAtotInh += static_cast<bigType>(network[n][3])*network[n][2];
 		}
 
 		// reAtotExc = dot(network, 0, nExcNeurons * 0.8) + dot(network, nExcNeurons * 0.8, nExcNeurons);
 		// reAtotInh = dot(network, nExcNeurons, nExcNeurons + (nNeurons - nExcNeurons) * 0.8) + dot(network, nExcNeurons + (nNeurons - nExcNeurons) * 0.8, nNeurons);
 		reAtotExc = reAtotInh = 0.0;
 		for ( n = 0; n < nExcNeurons; n++) {
-		  reAtotExc += static_cast<cpp_dec_float_100>(network[order[n]][3])*network[order[n]][2];
+		  reAtotExc += static_cast<bigType>(network[order[n]][3])*network[order[n]][2];
 		}
 		// Synaptic drive from inhibitory cells
 		for ( n = nExcNeurons; n < nNeurons; n++) {
-		  reAtotInh += static_cast<cpp_dec_float_100>(network[order[n]][3])*network[order[n]][2];
+		  reAtotInh += static_cast<bigType>(network[order[n]][3])*network[order[n]][2];
 		}
 
 		diffs.push_back(boost::array<double, 3>());
-		diffs[diffs.size()-1][0] = cpp_dec_float_100(reAtotExc - bigAtotExc).convert_to<double>();
-		diffs[diffs.size()-1][1] = cpp_dec_float_100(reAtotInh - bigAtotInh).convert_to<double>();
-		atotExc = static_cast<double>(bigAtotExc), atotInh = static_cast<double>(bigAtotInh);
+		diffs[diffs.size()-1][0] = static_cast<double>(static_cast<bigType>(reAtotExc - bigAtotExc));
+		diffs[diffs.size()-1][1] = static_cast<double>(static_cast<bigType>(reAtotInh - bigAtotInh));
+		atotExc = static_cast<double>(reAtotExc), atotInh = static_cast<double>(reAtotInh);
 		diffs[diffs.size()-1][2] = atotExc;
 
 		// Saving the previous state of the network to detecting episodes
