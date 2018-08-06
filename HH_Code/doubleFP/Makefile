@@ -6,7 +6,7 @@ LIBM=
 #../../../newlib-cygwin/newlib/libm/libm.a ../../../newlib-cygwin/newlib/libc.a
 
 ifndef DT
-	DT=0.001
+	DT=0.01
 	PREREQ=$(SRCS) includes/*
 else
 	PREREQ=FORCE

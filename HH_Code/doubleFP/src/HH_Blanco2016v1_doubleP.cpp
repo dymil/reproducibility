@@ -82,7 +82,7 @@ double i0=-10.0, deli=15,
 // p vexc=70
 // p vinh = -12
 double vExc = 70, vsyn = 70,
-		vInh = -12, vk = -12; //make vInh 70 to make excitatory and inhibitory function identically, so it's just floating point error
+		vInh = -12, vk = -12;
 
 // Synaptic parameters
 // p taus=10 tauf=1
