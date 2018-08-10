@@ -431,6 +431,11 @@ int main(int argc, char* argv[]) {
 		errsFP.push_back(boost::array<double, 3>());
 		errsFP[errsFP.size()-1][0] = cpp_dec_float_100(bigAtotExc - atotExc).convert_to<double>();
 		errsFP[errsFP.size()-1][1] = cpp_dec_float_100(bigAtotInh - atotInh).convert_to<double>();
+		// errsFP[errsFP.size()-1][1] = 0;
+		// for ( n = 0; n < nExcNeurons; n++)
+		//   errsFP[errsFP.size()-1][1] += static_cast<double>(static_cast<cpp_dec_float_100>(pow(network[n][3]*network[n][2] - bigAtotExc/nExcNeurons, 2)));
+		// errsFP[errsFP.size()-1][1] /= nExcNeurons;
+		// errsFP[errsFP.size()-1][1] = sqrt(errsFP[errsFP.size()-1][1]);
 		// errsFP[errsFP.size()-1][0] = bigAtotExc.convert_to<double>() - atotExc;
 		// errsFP[errsFP.size()-1][1] = bigAtotInh.convert_to<double>() - atotInh;
 		errsFP[errsFP.size()-1][2] = bigAtotExc.convert_to<double>();
